@@ -1,14 +1,17 @@
 'use strict';
-function fib(n){
-    if(n === 0){
-        return 0;
-    }else if(n === 1){
-        return 1;
-    }
+const record = new Map();
+record.set(0,0);
+record.set(1,1);
 
-    return fib(n-2) + fib (n-1);
+function fib(n){
+    if(record.has(n)){
+        return record.get(n);
+    }
+    const value = fib(n-2) + fib (n-1)
+    record.set(n, value);
+    return value;
 }
-const length = 40;
+const length = 100;
 for (let index = 0; index <= length; index++) {
     console.log(index + "番目の数値は" + fib(index));    
 }
